@@ -10,61 +10,60 @@
 </style>
 
 {# Etape 2 #}
+
 <div class="card step_2">
     <div class="card-content">
         <span class="card-title color_product_primary center-align">Étape 2</span>
         <p class="h6 center-align">Remplissez ce formulaire</p>
         <div class="form-wrapper">
             <div class="input-field">
-                <input type="text">
-                <label>Prénom</label>
+                    {{ form_widget(form.firstname) }}
+                    {{ form_label(form.firstname,'Prénom') }}
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Nom</label>
+                   {{ form_widget(form.lastname) }} 
+                   {{ form_label(form.lastname,'Nom') }}               
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Adresse</label>
+                {{ form_widget(form.adress) }}
+                {{ form_label(form.adress,'adresse') }} 
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Complément adr.</label>
+                {{ form_widget(form.complementadress) }}
+                {{ form_label(form.complementadress,"complément d'adresss") }} 
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Ville</label>
+                {{ form_widget(form.city) }}
+                {{ form_label(form.city,'Ville') }} 
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Code postal</label>
+                {{ form_widget(form.postalcode) }}
+                {{ form_label(form.postalcode,'Code Postal') }} 
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <select>
-                    <option>France</option>
-                </select>
-                <label>Pays</label>
+                {{ form_widget(form.country) }}
+                {{ form_label(form.country,'Pays') }} 
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Téléphone</label>
+                {{ form_widget(form.phonenumber) }}
+                {{ form_label(form.phonenumber,'Téléphone') }} 
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Email</label>
+                {{ form_label(form.email.first) }}
+                {{ form_widget(form.email.first) }}
                 <div class="form-error"></div>
             </div>
             <div class="input-field">
-                <input type="text">
-                <label>Confirmation email</label>
+            {{ form_label(form.email.second) }}
+                {{ form_widget(form.email.second) }}
                 <div class="form-error"></div>
             </div>
         </div>
@@ -119,6 +118,7 @@
         </li>
     </ul>
 </div>
+
 {# Etape 3 #}
 <div class="card step_3">
     <div class="card-content">

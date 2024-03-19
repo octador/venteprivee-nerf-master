@@ -25,7 +25,8 @@
             </div>
         </div>
     </section>
-    <form method="post">
+    {{ form_start(form) }}
+    {# <form method="post"> #}
         <div class="container">
             <div class="row">
                 <div class="content col s12 m12 l8">
@@ -269,7 +270,7 @@
                 {# Sidebar Form #}
                 <aside class="sidebar col s12 m12 l4">
 
-
+{# ------------------------------------------------------------formulaire------------------------------------------------------ #}
                     {% include 'landing_page/partials/form_new.html.twig' %}
 
                     <div class="card">
@@ -290,5 +291,6 @@
                 </aside>
             </div>
         </div>
-    </form>
+    {# </form> #}
+    {{ form_end(form) }}
 {% endblock %}
