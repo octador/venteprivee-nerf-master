@@ -73,45 +73,43 @@
             <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i>Adresse de livraison différente ?</div>
             <div class="collapsible-body">
                 <div class="input-field">
-                    <input type="text">
-                    <label>Prénom</label>
+                    {{ form_label(formdelivery.firstname) }}
+                    {{ form_widget(formdelivery.firstname) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Nom</label>
+                    {{ form_label(formdelivery.lastname) }}
+                    {{ form_widget(formdelivery.lastname) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Adresse</label>
+                    {{ form_label(formdelivery.adress) }}
+                    {{ form_widget(formdelivery.adress) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Complément adr.</label>
+                    {{ form_label(formdelivery.complement) }}
+                    {{ form_widget(formdelivery.complement) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Ville</label>
+                    {{ form_label(formdelivery.city) }}
+                    {{ form_widget(formdelivery.city) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Code postal</label>
+                    {{ form_label(formdelivery.postalcode) }}
+                    {{ form_widget(formdelivery.postalcode) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    <select>
-                        <option>France</option>
-                    </select>
-                    <label>Pays</label>
-                    <div class="form-error"></div>
-                </div>
+                {{ form_widget(formdelivery.country) }}
+                {{ form_label(formdelivery.country,'Pays') }} 
+                <div class="form-error"></div>
+            </div>
                 <div class="input-field">
-                    <input type="text">
-                    <label>Téléphone</label>
+                    {{ form_label(formdelivery.phonenumber) }}
+                    {{ form_widget(formdelivery.phonenumber) }}
                     <div class="form-error"></div>
                 </div>
             </div>
