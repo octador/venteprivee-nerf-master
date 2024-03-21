@@ -49,23 +49,15 @@ class Delivery
     #[ORM\OneToOne(inversedBy: 'delivery', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'delivery')]
-    private Collection $product;
-
     #[ORM\OneToOne(inversedBy: 'delivery', cascade: ['persist', 'remove'])]
     private ?Payment $payment = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $isstatuspayment = null;
 
-    
-        
-    
+    #[ORM\ManyToOne(inversedBy: 'deliveries')]
+    private ?Product $product = null;
 
-    public function __construct()
-    {
-        $this->product = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -204,36 +196,6 @@ class Delivery
         return $this;
     }
 
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getProduct(): Collection
-    {
-        return $this->product;
-    }
-
-    public function addProduct(Product $product): static
-    {
-        if (!$this->product->contains($product)) {
-            $this->product->add($product);
-            $product->setDelivery($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): static
-    {
-        if ($this->product->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getDelivery() === $this) {
-                $product->setDelivery(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getPayment(): ?Payment
     {
         return $this->payment;
@@ -256,5 +218,28 @@ class Delivery
         $this->isstatuspayment = $isstatuspayment;
 
         return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): static
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+    public function __unserialize(array $data): void
+    {
+        $this->firstname = $data['firstname'];
+        $this->lastname = $data['lastname'];
+        $this->adress = $data['adress'];
+        $this->complement = $data['complementadress'];
+        $this->city = $data['city'];
+        $this->postalcode = $data['postalcode'];
+        $this->country = $data['country'];
+        $this->phonenumber = $data['phonenumber'];
     }
 }

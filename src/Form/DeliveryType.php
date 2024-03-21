@@ -26,19 +26,6 @@ class DeliveryType extends AbstractType
                 'choices' => $this->fieldChoices(),
             ])
             ->add('phonenumber')
-            ->add('isstatusdelivery')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('isstatuspayment')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
-            ->add('payment', EntityType::class, [
-                'class' => Payment::class,
-                'choice_label' => 'id',
-            ])
         ;
     }
 

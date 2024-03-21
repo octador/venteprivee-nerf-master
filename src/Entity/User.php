@@ -193,4 +193,17 @@ class User
 
         return $this;
     }
+    public function __serialize(): array
+    {
+        return[
+            'firstname'=>$this->firstname,
+            'lastname'=>$this->lastname,
+            'adress'=> $this->adress,
+            'complement'=> $this->complementadress,
+            'city'=> $this->city,
+            'postalcode'=> $this->postalcode,
+            'country'=> $this->country,
+            'phonenumber'=> $this->phonenumber
+        ];
+    }
 }

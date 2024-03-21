@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -37,8 +39,13 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?int $reduction = null;
 
-    #[ORM\ManyToOne(inversedBy: 'product')]
-    private ?Delivery $delivery = null;
+    #[ORM\OneToMany(targetEntity: Delivery::class, mappedBy: 'product')]
+    private Collection $deliveries;
+
+    public function __construct()
+    {
+        $this->deliveries = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -141,14 +148,32 @@ class Product
         return $this;
     }
 
-    public function getDelivery(): ?Delivery
+    /**
+     * @return Collection<int, Delivery>
+     */
+    public function getDeliveries(): Collection
     {
-        return $this->delivery;
+        return $this->deliveries;
     }
 
-    public function setDelivery(?Delivery $delivery): static
+    public function addDelivery(Delivery $delivery): static
     {
-        $this->delivery = $delivery;
+        if (!$this->deliveries->contains($delivery)) {
+            $this->deliveries->add($delivery);
+            $delivery->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDelivery(Delivery $delivery): static
+    {
+        if ($this->deliveries->removeElement($delivery)) {
+            // set the owning side to null (unless already changed)
+            if ($delivery->getProduct() === $this) {
+                $delivery->setProduct(null);
+            }
+        }
 
         return $this;
     }

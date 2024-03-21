@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Delivery;
+use App\Entity\Product;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -37,10 +38,8 @@ class UserType extends AbstractType
                 'second_options' => ['label' => 'Confirmation email'],
             ])
            
-            ->add('delivery', EntityType::class, [
-                'class' => Delivery::class,
-                'choice_label' => 'id',
-            ])
+            ->add('delivery', DeliveryType::class)
+            
         ;
     }
 
