@@ -65,9 +65,15 @@ class LandingPageController extends AbstractController
            
             $entityManager->persist($newdelivery);
             $entityManager->persist($newuser);
+            
+
+            $userserial = $newuser->__serialize();
+            $newdelivery->__unserialize($userserial);
             $entityManager->flush();
             
             $this->jsonapp($newuser, $newdelivery);
+
+            return $this->redirectToRoute('app_stripe',['id'=> $newdelivery->getId()]);
             
         }
         return $this->render('landing_page/index_new.html.twig',[
